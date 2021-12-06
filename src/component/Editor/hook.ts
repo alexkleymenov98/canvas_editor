@@ -1,4 +1,4 @@
-import {ChangeEvent, RefObject, useEffect, useRef, useState} from "react";
+import {ChangeEvent, RefObject, useCallback, useEffect, useLayoutEffect, useRef, useState} from "react";
 import { fabric } from "fabric";
 import {Canvas } from "fabric/fabric-impl";
 import {ColorResult} from "react-color";
@@ -29,6 +29,8 @@ export type TFUEditor = ()=>{
     handleOnChangeBackgroundColor:(color:ColorResult)=>void;
     handleUploadImageWithLink:()=>void;
     handleOnChangeLink:(event:ChangeEvent<HTMLInputElement>)=>void;
+    isModal:boolean;
+    setIsModal:(v:boolean)=>void;
 }
 export const useEditor:TFUEditor = ()=>{
     const [data, setData] = useState<TData>({
@@ -41,6 +43,8 @@ export const useEditor:TFUEditor = ()=>{
         backgroundImage: "",
         linkImage:'',
     });
+
+    const [isModal, setIsModal] = useState(false);
 
     const container = useRef<HTMLCanvasElement>(null);
 
@@ -109,18 +113,19 @@ export const useEditor:TFUEditor = ()=>{
     }
 
     /** функция удаляет активный элемент */
-    const deleteActiveObject = () => {
+    const deleteActiveObject = useCallback(() => {
         const { canvas } = data;
         if(canvas){
             canvas.getActiveObjects().forEach((object) => {
                 canvas.remove(object);
             });
+            setData((prev)=>({...prev, canvas}))
         }
-    };
+    },[data]);
 
     /** функция вызывает удаление активного елемента по нажатия на Delete */
     const onHandleKeyDown = (event:KeyboardEvent) => {
-        if (event.which === 46) {
+        if (event.code === 'Delete') {
             deleteActiveObject();
         }
     };
@@ -180,6 +185,7 @@ export const useEditor:TFUEditor = ()=>{
                 { crossOrigin: "anonymous" }
             );
             setData((prev)=>({...prev, backgroundImage:url, canvas}));
+            setIsModal(false);
         }
     };
 
@@ -219,7 +225,7 @@ export const useEditor:TFUEditor = ()=>{
         }
     }
 
-    useEffect(()=>{
+    useLayoutEffect(()=>{
         const canvas = new fabric.Canvas("canvas", {
             backgroundColor: "#FDEFEF",
             height: container.current?.clientHeight ?? 500,
@@ -227,11 +233,16 @@ export const useEditor:TFUEditor = ()=>{
             preserveObjectStacking: true
         });
         setData((prev)=>({...prev, canvas}));
-        document.addEventListener("keydown", onHandleKeyDown);
         return ()=>{
             document.removeEventListener("keydown", onHandleKeyDown);
         }
-    },[])
+    },[]);
+
+    useEffect(()=>{
+        if(data.canvas){
+            document.addEventListener("keydown", onHandleKeyDown);
+        }
+    },[data.canvas])
 
     return {
         state:data,
@@ -247,5 +258,7 @@ export const useEditor:TFUEditor = ()=>{
         handleOnChangeBackgroundColor,
         handleUploadImageWithLink,
         handleOnChangeLink,
+        isModal,
+        setIsModal,
     }
 }

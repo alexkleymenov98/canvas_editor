@@ -1,6 +1,7 @@
 import React, {FC} from "react";
 import {TwitterPicker} from "react-color";
 import {useEditor} from "./hook";
+import { listImages } from "./shared";
 
 type EditorProps = {}
 
@@ -19,6 +20,8 @@ const Editor: FC<EditorProps> = () => {
         handleOnChangeBackgroundColor,
         handleUploadImageWithLink,
         handleOnChangeLink,
+        isModal,
+        setIsModal,
     } = useEditor();
     return <>
         <div>
@@ -87,7 +90,7 @@ const Editor: FC<EditorProps> = () => {
             <div className="settingns-wrapper">
                 <div className="setting-item">
                     <button
-                        onClick={() => handleAddBackground("https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg")}>Добавить
+                        onClick={()=>setIsModal(true)}>Добавить
                         Фон
                     </button>
                 </div>
@@ -140,6 +143,18 @@ const Editor: FC<EditorProps> = () => {
                 ref={container}
             ></canvas>
         </div>
+        {isModal && (
+            <div className="modal">
+                <div className="modal-body">
+                    <div className="modal-inner">
+                        <div className="modal-close" onClick={()=>setIsModal(false)}>X</div>
+                        <div className="modal-content">
+                            {listImages.map(({id, url})=>(<div key={id}><img onClick={() => handleAddBackground(url)} src={url} alt=""/></div>))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )}
     </>
 }
 
