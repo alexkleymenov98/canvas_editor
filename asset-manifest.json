@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/canvas_editor/static/css/main.d336189f.chunk.css",
-    "main.js": "/canvas_editor/static/js/main.7f2171c2.chunk.js",
-    "main.js.map": "/canvas_editor/static/js/main.7f2171c2.chunk.js.map",
+    "main.css": "/canvas_editor/static/css/main.d698b0e6.chunk.css",
+    "main.js": "/canvas_editor/static/js/main.d15115e8.chunk.js",
+    "main.js.map": "/canvas_editor/static/js/main.d15115e8.chunk.js.map",
     "runtime-main.js": "/canvas_editor/static/js/runtime-main.fa8b80de.js",
     "runtime-main.js.map": "/canvas_editor/static/js/runtime-main.fa8b80de.js.map",
-    "static/js/2.03bdd818.chunk.js": "/canvas_editor/static/js/2.03bdd818.chunk.js",
-    "static/js/2.03bdd818.chunk.js.map": "/canvas_editor/static/js/2.03bdd818.chunk.js.map",
+    "static/js/2.cd0eeb08.chunk.js": "/canvas_editor/static/js/2.cd0eeb08.chunk.js",
+    "static/js/2.cd0eeb08.chunk.js.map": "/canvas_editor/static/js/2.cd0eeb08.chunk.js.map",
     "static/js/3.a7fb98bb.chunk.js": "/canvas_editor/static/js/3.a7fb98bb.chunk.js",
     "static/js/3.a7fb98bb.chunk.js.map": "/canvas_editor/static/js/3.a7fb98bb.chunk.js.map",
     "index.html": "/canvas_editor/index.html",
-    "static/css/main.d336189f.chunk.css.map": "/canvas_editor/static/css/main.d336189f.chunk.css.map",
-    "static/js/2.03bdd818.chunk.js.LICENSE.txt": "/canvas_editor/static/js/2.03bdd818.chunk.js.LICENSE.txt"
+    "static/css/main.d698b0e6.chunk.css.map": "/canvas_editor/static/css/main.d698b0e6.chunk.css.map",
+    "static/js/2.cd0eeb08.chunk.js.LICENSE.txt": "/canvas_editor/static/js/2.cd0eeb08.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.fa8b80de.js",
-    "static/js/2.03bdd818.chunk.js",
-    "static/css/main.d336189f.chunk.css",
-    "static/js/main.7f2171c2.chunk.js"
+    "static/js/2.cd0eeb08.chunk.js",
+    "static/css/main.d698b0e6.chunk.css",
+    "static/js/main.d15115e8.chunk.js"
   ]
 }
