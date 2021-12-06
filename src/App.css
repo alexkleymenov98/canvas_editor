@@ -27,6 +27,30 @@
 .App-link {
   color: #61dafb;
 }
+.download {
+  text-decoration: none;
+  background: blue;
+  color:#fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  margin: 30px auto;
+  max-width: 200px;
+  padding: 1rem 2rem;
+}
+.settingns-wrapper {
+  display: flex;
+}
+.setting-item {
+  margin: 0 15px;
+}
+button {
+  background: white;
+  display: inline-block;
+  padding: 5px 15px;
+  border: none;
+}
 
 @keyframes App-logo-spin {
   from {
