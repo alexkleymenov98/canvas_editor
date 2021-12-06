@@ -193,7 +193,7 @@ export const useEditor:TFUEditor = ()=>{
                 (img) => {
                     canvas.add(img);
                     canvas.renderAll();
-                }
+                },{ scaleX: 0.15, scaleY: 0.15 }
             );
         }
         setData((prev)=>({...prev, canvas}));
@@ -206,11 +206,16 @@ export const useEditor:TFUEditor = ()=>{
             fabric.Image.fromURL(
                 linkImage,
                 (img) => {
+                    if(!img.getElement()?.src){
+                        alert('неверная ссылка')
+                     return;
+                    }
                     canvas.add(img);
                     canvas.renderAll();
                 },
                 { scaleX: 0.15, scaleY: 0.15 }
             );
+            setData((prev)=>({...prev, canvas, linkImage:''}))
         }
     }
 
